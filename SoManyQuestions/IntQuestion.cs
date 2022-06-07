@@ -1,27 +1,21 @@
 ﻿namespace SoManyQuestions
 {
-    internal class IntQuestion
+    internal class IntQuestion : Question
     {
-        private string _question;
         private int _min;
         private int _max;
 
         public IntQuestion(string question, int min, int max)
+            : base(question)
         {
-            _question = question;
             _min = min;
             _max = max;
         }
 
-        public void Run()
+        protected override bool IsValid(string answer)
         {
-            bool isValid = false;
-            while (!isValid)
-            {
-                Console.Write(_question + "? ");
-                var answer = Console.ReadLine().Trim();
-                isValid = int.TryParse(answer, out int answer2) && answer2 >= _min && answer2 <= _max;
-            }
+            return int.TryParse(answer, out int answer2) 
+                && answer2 >= _min && answer2 <= _max;
         }
     }
 }

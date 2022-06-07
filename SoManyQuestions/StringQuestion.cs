@@ -1,23 +1,15 @@
 ﻿namespace SoManyQuestions
 {
-    internal class StringQuestion
+    internal class StringQuestion : Question
     {
-        private string _question;
-
         public StringQuestion(string question)
+            : base(question)
         {
-            _question = question;
         }
 
-        public void Run()
+        protected override bool IsValid(string answer)
         {
-            bool isValid = false;
-            while (!isValid)
-            {
-                Console.Write(_question + "? ");
-                var answer = Console.ReadLine().Trim();
-                isValid = answer.Length > 0;
-            }
+            return answer.Length > 0;
         }
     }
 }
